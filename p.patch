@@ -1,0 +1,258 @@
+
+From 944cce952f015012b7e0a2fbb1513da159a769b1 Mon Sep 17 00:00:00 2001
+From: Andrew Dodd <atd7@cornell.edu>
+Date: Sat, 18 Aug 2012 17:18:55 -0400
+Subject: [PATCH] gitignores
+
+---
+ .gitignore                          |   92 +++++++++++++++++++++++++++++++++++
+ arch/arm/boot/.gitignore            |    2 +
+ arch/arm/boot/compressed/.gitignore |    4 ++
+ arch/arm/kernel/.gitignore          |    1 +
+ drivers/tty/vt/.gitignore           |    2 +
+ firmware/epen/.gitignore            |    2 +
+ firmware/tsp_atmel/.gitignore       |    2 +
+ kernel/.gitignore                   |    1 +
+ lib/.gitignore                      |    2 +
+ scripts/.gitignore                  |    2 +
+ scripts/basic/.gitignore            |    1 +
+ scripts/genksyms/.gitignore         |    5 ++
+ scripts/kconfig/.gitignore          |    5 ++
+ scripts/mod/.gitignore              |    3 ++
+ usr/.gitignore                      |    2 +
+ 15 files changed, 126 insertions(+)
+ create mode 100644 .gitignore
+ create mode 100644 arch/arm/boot/.gitignore
+ create mode 100644 arch/arm/boot/compressed/.gitignore
+ create mode 100644 arch/arm/kernel/.gitignore
+ create mode 100644 drivers/tty/vt/.gitignore
+ create mode 100644 firmware/epen/.gitignore
+ create mode 100644 firmware/tsp_atmel/.gitignore
+ create mode 100644 kernel/.gitignore
+ create mode 100644 lib/.gitignore
+ create mode 100644 scripts/.gitignore
+ create mode 100644 scripts/basic/.gitignore
+ create mode 100644 scripts/genksyms/.gitignore
+ create mode 100644 scripts/kconfig/.gitignore
+ create mode 100644 scripts/mod/.gitignore
+ create mode 100644 usr/.gitignore
+
+diff --git a/.gitignore b/.gitignore
+new file mode 100644
+index 0000000..b2f6004
+--- /dev/null
++++ b/.gitignore
+@@ -0,0 +1,92 @@
++#
++# NOTE! Don't add files that are generated in specific
++# subdirectories here. Add them in the ".gitignore" file
++# in that subdirectory instead.
++#
++# NOTE! Please use 'git ls-files -i --exclude-standard'
++# command after changing this file, to see if there are
++# any tracked files which get ignored after the change.
++#
++# Normal rules
++#
++.*
++*.o
++*.o.*
++*.a
++*.s
++*.ko
++*.so
++*.so.dbg
++*.mod.c
++*.i
++*.lst
++*.symtypes
++*.order
++modules.builtin
++!drivers/mfd/cg2900/modules.order
++*.elf
++*.bin
++*.gz
++*.bz2
++*.lzma
++*.lzo
++*.patch
++*.gcno
++
++#
++# Top-level generic files
++#
++/tags
++/TAGS
++/linux
++/vmlinux
++/vmlinuz
++/System.map
++/Module.markers
++/Module.symvers
++
++#
++# git files that we don't want to ignore even it they are dot-files
++#
++!.gitignore
++!.mailmap
++
++#
++# Generated include files
++#
++include/asm
++include/asm-arm
++include/config
++include/linux/autoconf.h
++include/linux/compile.h
++include/linux/version.h
++include/linux/utsrelease.h
++include/linux/bounds.h
++include/generated
++
++# stgit generated dirs
++patches-*
++
++# quilt's files
++patches
++series
++
++# cscope files
++cscope.*
++ncscope.*
++
++# gnu global files
++GPATH
++GRTAGS
++GSYMS
++GTAGS
++
++*.orig
++*~
++\#*#
++_t32
++_tool
++
++Module.symvers
++
++boot.img
+diff --git a/arch/arm/boot/.gitignore b/arch/arm/boot/.gitignore
+new file mode 100644
+index 0000000..171a085
+--- /dev/null
++++ b/arch/arm/boot/.gitignore
+@@ -0,0 +1,2 @@
++Image
++zImage
+diff --git a/arch/arm/boot/compressed/.gitignore b/arch/arm/boot/compressed/.gitignore
+new file mode 100644
+index 0000000..9e36981
+--- /dev/null
++++ b/arch/arm/boot/compressed/.gitignore
+@@ -0,0 +1,4 @@
++lib1funcs.S
++piggy.gzip
++vmlinux
++vmlinux.lds
+diff --git a/arch/arm/kernel/.gitignore b/arch/arm/kernel/.gitignore
+new file mode 100644
+index 0000000..c5f676c
+--- /dev/null
++++ b/arch/arm/kernel/.gitignore
+@@ -0,0 +1 @@
++vmlinux.lds
+diff --git a/drivers/tty/vt/.gitignore b/drivers/tty/vt/.gitignore
+new file mode 100644
+index 0000000..83683a2
+--- /dev/null
++++ b/drivers/tty/vt/.gitignore
+@@ -0,0 +1,2 @@
++consolemap_deftbl.c
++defkeymap.c
+diff --git a/firmware/epen/.gitignore b/firmware/epen/.gitignore
+new file mode 100644
+index 0000000..4543f6f
+--- /dev/null
++++ b/firmware/epen/.gitignore
+@@ -0,0 +1,2 @@
++W8501.bin.gen.S
++W8501_P48.bin.gen.S
+diff --git a/firmware/tsp_atmel/.gitignore b/firmware/tsp_atmel/.gitignore
+new file mode 100644
+index 0000000..93db3a5
+--- /dev/null
++++ b/firmware/tsp_atmel/.gitignore
+@@ -0,0 +1,2 @@
++mXT1664S.fw
++mXT1664S.fw.gen.S
+diff --git a/kernel/.gitignore b/kernel/.gitignore
+new file mode 100644
+index 0000000..e076f47
+--- /dev/null
++++ b/kernel/.gitignore
+@@ -0,0 +1 @@
++timeconst.h
+diff --git a/lib/.gitignore b/lib/.gitignore
+new file mode 100644
+index 0000000..30d3818
+--- /dev/null
++++ b/lib/.gitignore
+@@ -0,0 +1,2 @@
++crc32table.h
++gen_crc32table
+diff --git a/scripts/.gitignore b/scripts/.gitignore
+new file mode 100644
+index 0000000..513619a
+--- /dev/null
++++ b/scripts/.gitignore
+@@ -0,0 +1,2 @@
++kallsyms
++conmakehash
+diff --git a/scripts/basic/.gitignore b/scripts/basic/.gitignore
+new file mode 100644
+index 0000000..a776371
+--- /dev/null
++++ b/scripts/basic/.gitignore
+@@ -0,0 +1 @@
++fixdep
+diff --git a/scripts/genksyms/.gitignore b/scripts/genksyms/.gitignore
+new file mode 100644
+index 0000000..f2f0be0
+--- /dev/null
++++ b/scripts/genksyms/.gitignore
+@@ -0,0 +1,5 @@
++genksyms
++keywords.c
++lex.c
++parse.c
++parse.h
+diff --git a/scripts/kconfig/.gitignore b/scripts/kconfig/.gitignore
+new file mode 100644
+index 0000000..c4f6fe4
+--- /dev/null
++++ b/scripts/kconfig/.gitignore
+@@ -0,0 +1,5 @@
++conf
++lex.zconf.c
++mconf
++zconf.hash.c
++zconf.tab.c
+diff --git a/scripts/mod/.gitignore b/scripts/mod/.gitignore
+new file mode 100644
+index 0000000..a6dd5e2
+--- /dev/null
++++ b/scripts/mod/.gitignore
+@@ -0,0 +1,3 @@
++elfconfig.h
++mk_elfconfig
++modpost
+diff --git a/usr/.gitignore b/usr/.gitignore
+new file mode 100644
+index 0000000..f971bf0
+--- /dev/null
++++ b/usr/.gitignore
+@@ -0,0 +1,2 @@
++gen_init_cpio
++initramfs_data.cpio
+-- 
+1.7.10
+
