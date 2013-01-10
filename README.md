@@ -10,4 +10,4 @@ make gc1pq_00_defconfig;
 make -j8;
 
 Note: -j parameter can be adjusted, preferably to the number of cores 
-available.
+available. 
